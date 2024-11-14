@@ -1,0 +1,144 @@
+ <?php
+
+  function testimonial_sample_content_install() {
+
+    $module_path = backdrop_get_path('module', 'testimonial_sample_content');
+
+    // field_create_instance($instance);
+    $field_image_dir = 'public://testimonials';
+    file_prepare_directory($field_image_dir, FILE_CREATE_DIRECTORY);
+
+    $images = array(
+      'profile-pic-001.png',
+      'profile-pic-002.png',
+      'profile-pic-003.png',
+    );
+
+    $fids = [];
+
+    foreach ($images as $image_filename) {
+      $image_url = BACKDROP_ROOT . '/' . backdrop_get_path('module', 'testimonial_sample_content') . '/' . 'images/'. $image_filename;
+      $moved_file = file_unmanaged_copy($image_url, $field_image_dir);
+
+      $file = entity_create('file', array(
+        'filename' => $image_filename,
+        'uri' => $moved_file,
+        'uid' => 1,
+      ));
+
+      $file->save();
+      $fids[] = $file->fid;
+    }
+
+    // 1 - Make a testimonial node.
+    $one = file_get_contents($module_path . '/testimonial_txt/one.txt');
+    $testimonial = new Node(
+      array(
+        'title' => st("Why Testimonials"),
+        'field_testimonial_image' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'fid' => $fids[0],
+            ),
+          ),
+        ),
+        'body' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st($one),
+              'format' => 'filtered_html',
+            ),
+          ),
+        ),
+        'field_testimonial_author' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("Kai Nakamura"),
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'comment' => 0,
+        'type' => 'testimonial',
+      )
+    );
+    $testimonial->save();
+
+    // 2 - Make a testimonial node.
+    $two = file_get_contents($module_path . '/testimonial_txt/two.txt');
+    $testimonial = new Node(
+      array(
+        'title' => st("Front Page Block"),
+        'field_testimonial_image' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'fid' => $fids[1],
+            ),
+          ),
+        ),
+        'body' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st($two),
+              'format' => 'filtered_html',
+            ),
+          ),
+        ),
+        'field_testimonial_author' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("Ari Patel"),
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'comment' => 0,
+        'type' => 'testimonial',
+      )
+    );
+    $testimonial->save();
+
+    // 3 - Make a testimonial node.
+    $three = file_get_contents($module_path . '/testimonial_txt/three.txt');
+    $testimonial = new Node(
+      array(
+        'title' => st("3rd Testimonial"),
+        'field_testimonial_image' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'fid' => $fids[2],
+            ),
+          ),
+        ),
+        'body' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st($three),
+              'format' => 'filtered_html',
+            ),
+          ),
+        ),
+        'field_testimonial_author' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("Sasha Rivera"),
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'comment' => 0,
+        'type' => 'testimonial',
+      )
+    );
+    $testimonial->save();
+
+    $layout = layout_load('home'); 
+    $layout->addBlock('views', 'testimonials-block_1', 'bottom');
+    $layout->save();
+  }

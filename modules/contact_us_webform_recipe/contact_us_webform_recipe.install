@@ -1,0 +1,65 @@
+<?php
+  function contact_us_webform_recipe_install() {
+
+    // Make Contact form with Webform Module.
+    $webform = new Node(
+      array(
+        'title' => st("Contact Us"),
+        'path' => array(
+          'alias' => 'contact-us',
+          'auto' => FALSE,
+        ),
+        'webform' => array(
+          'components' => array(
+            array(
+              'name' => st("Name"),
+              'form_key' => st("name"),
+              'pid' => 0,
+              'weight' => 0,
+              'type' => st("textfield"),
+              'required' => st('1'),
+              'extra' => array(
+                'private' => 0,
+              ),
+            ),
+            array(
+              'name' => st("Email"),
+              'form_key' => st("email"),
+              'pid' => 0,
+              'weight' => 5,
+              'type' => st("email"),
+
+            ),
+            array(
+              'name' => st("Message"),
+              'form_key' => st("message"),
+              'pid' => 0,
+              'weight' => 10,
+              'type' => st("textarea"),
+              'value' => st('Be sure to configure form settings and emails and delete this default value in "Form Components."'),
+            ),
+          ),
+          'progressbar_bar' => 0,
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'webform',
+      )
+    );
+    $webform->save();
+    $nid = $webform->nid;
+
+    $link = array(
+      'link_title' => st('Contact Us'),
+      'link_path' => 'node/' . $nid,
+      'menu_name' => 'main-menu',
+      'weight' => 5,
+    );
+    menu_link_save($link);
+
+    config_set('node.type.webform', 'settings.node_submitted', 0);
+
+    // Update the menu router information.
+    menu_rebuild();
+  }

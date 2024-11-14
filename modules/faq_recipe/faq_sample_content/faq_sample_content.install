@@ -1,0 +1,89 @@
+<?php
+  function faq_sample_content_install() {
+    // Make a faq node.
+    $faq = new Node(
+      array(
+        'title' => st('How does this recipe work?'),
+        'field_faq_answer' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st('This recipe basically creates and configures a FAQ content type for you and a corresponding view to display the results.'),
+              'format' => 'filtered_html',
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'faq',
+      )
+    );
+    $faq->save();
+
+    // Make a faq node.
+    $faq = new Node(
+      array(
+        'title' => st('How do I delete this recipe from my site?'),
+        'field_faq_answer' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st('<p>You can uninstall this recipe as you would any module. However, the configuration and content will remain. To completely delete this recipe:</p>
+                  <ol><li>Delete the FAQ items in the content menu.</li>
+                  <li>Delete the FAQ fields.</li>
+                  <li>Delete the FAQ content type.</li>
+                  <li>Delete the FAQ view.</li></ol>'),
+              'format' => 'filtered_html',
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'faq',
+      )
+    );
+    $faq->save();
+
+    // Make a faq node.
+    $faq = new Node(
+      array(
+        'title' => st('How do I get the accordion effect on my FAQ page?'),
+        'field_faq_answer' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st('<p>The Views Bootstrap module is required for that effect. You will need to enable "Include Bootstrap CSS &amp; JS when used by Views" on the <a href="/admin/config/user-interface/views_bootstrap">Views Bootstrap config page</a>.</p>'),
+              'format' => 'filtered_html',
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'faq',
+      )
+    );
+    $faq->save();
+
+    // Make a faq node.
+    $faq = new Node(
+      array(
+        'title' => st('How do I download more Backdrop recipes?'),
+        'field_faq_answer' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st('<p>Recipes can be downloaded from BackdropCMS.org. On the module page <a href="https://backdropcms.org/modules?s=recipes">search for recipes</a>.</p>'),
+              'format' => 'filtered_html',
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'faq',
+      )
+    );
+    $faq->save();
+
+    backdrop_set_message('The FAQ Sample Content module has create sample content on your site. You will need to remove this content manually when you are finished with it.', 'info');
+  }
+

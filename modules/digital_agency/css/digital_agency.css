@@ -1,0 +1,418 @@
+/**
+ * @file
+ * Custom CSS for the Digital Agency package.
+ */
+
+/* Fixing problem with Basis */
+
+body .l-top .block-hero {
+  margin-top: 0;
+}
+
+body .l-header-inner {
+  min-height: 5.125rem;
+}
+
+.d-agency .l-wrapper {
+  padding-bottom: 60px;
+}
+
+.l-footer.region {
+  background-color: #7E5028;
+  color:  white;
+}
+
+#layout-edit-main .region {
+  background-color: #fafafa;
+  color:  black;
+}
+
+#layout-edit-main .region a {
+  color: #0074bd;
+}
+
+.l-footer.region a {
+  color: #C9B897;
+}
+
+.l-bottom.region {
+  background-color: #C9B897;
+}
+
+.front .l-top.region {
+  background-color: black;
+}
+
+.region .container {
+  padding-top: 20px;
+}
+
+.l-header.region .container {
+  padding-top: 0px;
+}
+
+.l-header.region {
+  margin:  0;
+}
+
+.l-footer.region {
+  margin:  0px;
+}
+
+a.button {
+  background-color: teal;
+  color: white;
+}
+
+a.button:hover {
+  background-color: grey;
+  color:  black;
+}
+
+body legend {
+  font-size:  1rem;
+}
+
+body legend a {
+  margin-right: 1rem;
+}
+
+/* Hero Image */
+
+.block-layout-hero.block-hero {
+  color: white;
+  min-height: 70vh;
+}
+
+.l-top .block-hero {
+  height: 400px;
+  margin-bottom: 0;
+}
+
+.block-smart-blocks-smartblocksheroblock h2.block-title {
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  margin: 0 auto;
+  padding: 20px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  width: max-content;
+}
+
+.block.block-system-messages.contextual-links-region {
+  padding: 0;
+}
+
+/*
+** Make Views grids, that are included in this recipe, responsive.
+*/
+
+.view .views-view-grid {
+  gap: 2rem;
+}
+
+.view .views-view-grid-cols-2,
+.view .views-view-grid-cols-3,
+.view .views-view-grid-cols-4,
+.view .views-view-grid-cols-5,
+.view .views-view-grid-cols-6 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 48em) {
+  .view .views-view-grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .view .views-view-grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .view .views-view-grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .view .views-view-grid-cols-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .view .views-view-grid-cols-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 68em) {
+  .view .views-view-grid-cols-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.view .views-view-grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+  gap: 25px; /* Space between the blocks */
+}
+
+.views-view-grid-cols-3 .views-grid-box {
+  display: contents; /* Makes the children of this element act as direct children of the grid container */
+}
+
+.view-portfolio-projects .views-view-grid-cols-3 .views-grid-box {
+  display: grid;
+  grid-template-rows: auto auto auto; /* 3 rows inside each block */
+}
+
+.views-grid-box {
+  column-span: 1;
+}
+
+.views-view-grid-cols-3 .views-grid-box {
+  border: 1px solid green;
+  box-sizing: border-box;
+}
+
+/* Explicitly assign items to their respective rows */
+.views-view-grid-cols-3 .views-grid-box > .views-field:nth-child(1) {
+  grid-column: span 1; /* Each item takes up one column */
+  grid-row: 1; /* Place item-1 in the first row */
+}
+
+.views-view-grid-cols-3 .views-grid-box > .views-field:nth-child(2) {
+  grid-column: span 1;
+  grid-row: 2; /* Place item-2 in the second row */
+}
+
+.views-view-grid-cols-3 .views-grid-box > .views-field:nth-child(3) {
+  grid-column: span 1;
+  grid-row: 3; /* Place item-3 in the third row */
+}
+
+.views-view-grid-cols-3 .views-grid-box > .views-field:nth-child(4) {
+  grid-column: span 1;
+  grid-row: 4; /* Place item-3 in the third row */
+}
+
+/*
+** Mini Layout in footer
+*/
+
+.l-footer .block-mini-layouts-footer-mini-layout {
+    line-height: 1.7;
+}
+
+.l-footer .block-mini-layouts-footer-mini-layout ul.nice-menu {
+    margin-top: 20px;
+    border-top: none;
+}
+
+.block-mini-layouts-footer-mini-layout ul.nice-menu li {
+    border: none;
+    background: rgba(0,0,0,0);
+}
+
+.block-mini-layouts-footer-mini-layout ul.nice-menu li a {
+    padding: 0.3em 5px 0.3em 5px;
+}
+
+/*
+** Testimonials Recipe 
+*/
+
+.view-testimonials img {
+  display: block;
+  max-width: 110px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  margin-top: -60px;
+}
+
+.view-testimonials .views-grid-box .views-field-body {
+  background-color: white;
+  border: 1px solid grey;
+  padding-bottom: 60px;
+  padding-top: -40px;
+}
+
+.view-testimonials .views-field-body p {
+  font-style: italic;
+}
+
+.view-testimonials .views-field-body p:first-child:before {
+  content: open-quote;
+}
+
+.view-testimonials .views-field-body p:last-child:after {
+  content: close-quote;
+}
+
+.view-testimonials .views-field-field-testimonial-author div {
+  font-weight: 900;
+  text-align: center;
+  margin-top: -20px;
+}
+
+.view.view-testimonials .views-view-grid .views-grid-box {
+  border: none;
+}
+
+.view-testimonials .views-field-body .field-content {
+  width: 60%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.view-testimonials .views-field-body .field-content p:before {
+  display: block;
+  background-image: url('/core/misc/icons/quotes.svg');
+  content: " ";
+  width: 60px;
+  height: 60px;
+  transform: rotatey(180deg);
+  position: relative;
+    top: 20px;
+  margin-left: -60px;
+}
+
+.view-testimonials .views-field-body .field-content p:after {
+  display: block;
+  background-image: url('/core/misc/icons/quotes.svg');
+  content: " ";
+  width: 60px;
+  height: 60px;
+  position: absolute;
+    bottom: -30px;
+    right: 0;
+  margin-right: -60px;
+}
+
+/*
+** Portfolio Projects
+*/
+
+@media (min-width: 38em) {
+  .front .block-view .block-title {
+    width: 50%;
+    float: left;
+  }
+
+  .front .block-view .view-header {
+    width: 50%;
+    text-align: right;
+    float: right;
+  }
+
+  .front .view .views-view-grid {
+    clear: both;
+  }
+}
+
+.view-portfolio-projects .views-field-title h3 {
+  min-height: 3.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+/*
+** IIV Block - FAQ block on front page
+*/
+
+.block.block-iivblock-faq-block {
+  padding-top:  30px;
+}
+
+.block-iivblock {
+  margin: 70px;
+}
+
+.block-iivblock h3 {
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.block-iivblock img {
+  float: right;
+}
+
+.block-iivblock img {
+  float: right;
+}
+
+.iivblock-body {
+  max-width: 250px;
+  display:  grid;
+  align-items: center;
+  text-align: center;
+}
+
+.block {
+  padding: 0 0 40px 0;
+}
+
+.block-system-header {
+  padding: 0;
+}
+
+.l-content {
+  padding-bottom:  60px;
+}
+
+.field-block.block,
+.block.block-system-breadcrumb,
+.block.block-system-title-combo {
+  padding: 0;
+}
+
+/*
+** Tags
+*/
+
+.field-name-field-tags a,
+.views-field-field-tags a {
+  border: 1px solid grey;
+  padding: 4px 10px;
+  text-decoration: none;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.field-name-field-tags a:hover,
+.views-field-field-tags a:hover {
+  background-color: grey;
+  color: white;
+}
+
+.node.view-mode-teaser + .node.view-mode-teaser {
+  border-top: 1px solid black;
+  padding-top: 30px;
+  margin-top: 0;
+}
+
+/* Comments */
+
+.comments {
+  clear: both;
+  padding-top: 2rem;
+}
+
+.comments .filter-wrapper {
+  padding: 0;
+}
+
+.comments .title {
+  font-size: 1.5rem;
+}
+
+/*  Services Recipe */
+
+.views-field-field-services-image img {
+  max-width: 150px;
+  display: block;
+  margin-left:  auto;
+  margin-right: auto;
+}
+
+/* Centering status messages in region without .container */
+
+.l-messages {
+  max-width: 1178px;
+  margin: 0 auto;
+}

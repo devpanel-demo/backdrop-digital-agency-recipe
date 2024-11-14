@@ -1,0 +1,147 @@
+.iivblock-image {
+  text-align: center;
+}
+
+.iivblock-inner .slideInLeft {
+	opacity: 0;
+}
+.iivblock-inner.iivblock_visible .slideInLeft {
+  opacity: 0;
+  animation: SlideInLeft 2s ease 0s 1 normal forwards;
+}
+
+@keyframes SlideInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.iivblock-inner .slideInRight {
+	opacity: 0;
+}
+.iivblock-inner.iivblock_visible .slideInRight {
+  opacity: 0;
+  animation: SlideInRight 2s ease 0s 1 normal forwards;
+}
+
+@keyframes SlideInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.iivblock-inner .slideInBottom {
+	opacity: 0;
+}
+.iivblock-inner.iivblock_visible .slideInBottom {
+	opacity: 0;
+  animation: SlideInBottom 2s ease 0s 1 normal forwards;
+}
+@keyframes SlideInBottom {
+	0% {
+		opacity: 0;
+		transform: translateY(250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+.iivblock-inner .slideInTop {
+	opacity: 0;
+}
+.iivblock-inner.iivblock_visible .slideInTop {
+  opacity: 0;
+  animation: SlideInTop 2s ease 0s 1 normal forwards;
+}
+@keyframes SlideInTop {
+	0% {
+		opacity: 0;
+		transform: translateY(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.iivblock-inner .fadeIn {
+	opacity: 0;
+}
+.iivblock-inner.iivblock_visible .fadeIn {
+	opacity: 0;
+	animation: fadeIn 2s ease 0s 1 normal forwards;
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: scale(0.6);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.iivblock-inner .swingInTop {
+	opacity: 0;
+}
+.iivblock-inner.iivblock_visible .swingInTop {
+	opacity: 0;
+	animation: swingInTop 2s ease 0s 1 normal forwards;
+  }
+  @keyframes swingInTop {
+	0% {
+		opacity: 0;
+		transform: rotateX(-100deg);
+		transform-origin: top;
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotateX(0deg);
+		transform-origin: top;
+	}
+}
+
+.iivblock-inner .swingInBottom {
+	opacity: 0;
+}
+.iivblock-inner.iivblock_visible .swingInBottom {
+	opacity: 0;
+	animation: swingInBottom 2s ease 0s 1 normal forwards;
+  }
+  @keyframes swingInBottom {
+	0% {
+		opacity: 0;
+		transform: rotateX(100deg);
+		transform-origin: bottom;
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotateX(0);
+		transform-origin: bottom;
+	}
+}
+
+.iivblock-body {
+	align-self: center;
+}

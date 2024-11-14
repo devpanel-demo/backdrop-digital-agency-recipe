@@ -1,0 +1,37 @@
+type = module
+name = Digital Agency
+description = This is a package of recipes and content used to generate a quick start on a website for a digital agency.
+package = Recipes
+backdrop = 1.x
+
+; Link to the module's configuration page.
+configure = admin/config/system/digital_agency
+
+; Add custom CSS & JS files.
+stylesheets[all][] = css/digital_agency.css
+scripts[] = js/digital_agency.js
+
+; List any dependencies here.
+dependencies[] = mini_layouts
+dependencies[] = nice_menus
+dependencies[] = contact_us_webform_recipe
+dependencies[] = services_recipe
+dependencies[] = services_recipe:services_sample_content
+dependencies[] = faq_recipe
+dependencies[] = faq_recipe:faq_sample_content
+dependencies[] = portfolio_projects_recipe
+dependencies[] = portfolio_projects_recipe:portfolio_projects_sample_content
+dependencies[] = testimonial_recipe
+dependencies[] = testimonial_recipe:testimonial_sample_content
+dependencies[] = image_grid_block
+dependencies[] = iivblock
+dependencies[] = smart_blocks
+
+
+; Find suggested tags at: https://docs.backdropcms.org/documentation/module-packages-and-tags
+tags[] = Recipes
+
+; Added by Backdrop CMS packaging script on 2024-10-08
+project = digital_agency
+version = 1.x-1.0.0-beta29
+timestamp = 1728371082

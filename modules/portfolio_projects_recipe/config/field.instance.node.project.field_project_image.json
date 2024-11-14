@@ -1,0 +1,50 @@
+{
+    "_config_name": "field.instance.node.project.field_project_image",
+    "field_name": "field_project_image",
+    "entity_type": "node",
+    "bundle": "project",
+    "label": "Image",
+    "widget": {
+        "weight": "-2",
+        "type": "image_image",
+        "module": "image",
+        "active": 1,
+        "settings": {
+            "progress_indicator": "throbber",
+            "browser_view": "image_library",
+            "preview_image_style": "thumbnail"
+        }
+    },
+    "description": "",
+    "required": 0,
+    "deleted": 0,
+    "default_value": null,
+    "default_value_function": null,
+    "settings": {
+        "file_directory": "projects",
+        "file_extensions": "png gif jpg jpeg webp svg",
+        "max_filesize": "5MB",
+        "max_dimensions": "1000x1000",
+        "min_dimensions": "100x100",
+        "alt_field": 1,
+        "alt_field_required": 0,
+        "title_field": 1,
+        "orientate": 0,
+        "default_image": "",
+        "user_register_form": false
+    },
+    "display": {
+        "default": {
+            "label": "hidden",
+            "type": "image",
+            "settings": {
+                "image_style": "",
+                "image_link": "",
+                "image_float": "",
+                "image_load": "auto"
+            },
+            "module": "image",
+            "weight": 2
+        }
+    }
+}

@@ -1,0 +1,7 @@
+<?php
+  function faq_recipe_install() {
+    config_set('views_bootstrap.settings', 'include_bootstrap_assets', '1');
+      backdrop_set_message('Please consider using the FAQ Sample Content module to better see what this recipe does.', 'info');
+  }
+
+

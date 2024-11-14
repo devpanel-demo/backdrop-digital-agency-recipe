@@ -1,0 +1,135 @@
+<?php
+
+/**
+ * @file
+ * Primarily Backdrop hooks for IIV Blocks.
+ */
+
+/**
+ * Implements hook_autoload_info().
+ */
+function iivblock_autoload_info() {
+  return array(
+    'BlockIIV' => 'iivblock.block.inc',
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function iivblock_theme() {
+  return array(
+    'iivblock_content' => array(
+      'render element' => 'elements',
+      'template' => 'iivblock-content',
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function iivblock_menu() {
+  $items['admin/structure/iivblock'] = array(
+    'title' => 'IIV Blocks',
+    'description' => 'List and configure IIV Blocks.',
+    'page callback' => 'iivblock_list',
+    'access arguments' => array('administer layouts'),
+    'file' => 'iivblock.admin.inc',
+  );
+  $items['admin/structure/iivblock/list'] = array(
+    'title' => 'IIV Blocks',
+    'description' => 'List of existing IIV Blocks.',
+    'page callback' => 'iivblock_list',
+    'access arguments' => array('administer layouts'),
+    'file' => 'iivblock.admin.inc',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['admin/structure/iivblock/iivblock_configure'] = array(
+    'title' => 'Settings',
+    'description' => 'Configure IIV Block settings.',
+    'page callback' => 'backdrop_get_form',
+    'page arguments' => array('iivblock_admin_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'file' => 'iivblock.admin.inc',
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 1,
+  );
+  $items['admin/structure/iivblock/%/delete'] = array(
+    'title' => 'Delete IIV Block',
+    'page callback' => 'backdrop_get_form',
+    'page arguments' => array('iivblock_block_delete', 3),
+    'access arguments' => array(3),
+    'access callback' => 'iivblock_delete_access',
+    'type' => MENU_CALLBACK,
+    'file' => 'iivblock.admin.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_config_info().
+ */
+function iivblock_config_info() {
+  $prefixes['iivblock.settings'] = array(
+    'label' => t('IIV Block settings'),
+    'group' => t('Configuration'),
+  );
+  // Note that image files are not exportable.
+  $prefixes['iivblock.block'] = array(
+    'name_key' => 'machine_name',
+    'label_key' => 'label',
+    'group' => t('IIV Blocks'),
+  );
+  return $prefixes;
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function iivblock_block_info() {
+  $blocks = array();
+  $default_info = t('A basic block for adding custom text and an image with effects.');
+  $blocks['default'] = array(
+    'info' => t('IIV Block'),
+    'description' => $default_info,
+    'class' => 'BlockIIV',
+  );
+  // IIV Blocks are reusable.
+  $config_names = config_get_names_with_prefix('iivblock.block.');
+  foreach ($config_names as $config_name) {
+    $block = config_get($config_name);
+    $block_info = array();
+    $block_info['info'] = $block['label'];
+    $block_info['class'] = 'BlockIIV';
+    $block_info['description'] = $default_info;
+    $blocks[$block['machine_name']] = $block_info;
+  }
+  return $blocks;
+}
+
+/**
+ * Load a single IIV Block by its machine name.
+ *
+ * Helper function for #machine_name form item.
+ */
+function iivblock_load($name = '') {
+  $block = config_get('iivblock.block.' . $name);
+  if (!$block) {
+    return FALSE;
+  }
+  return $block;
+}
+
+/**
+ * Implements template_preprocess_block().
+ */
+function iivblock_preprocess_block(&$variables) {
+  if ($variables['block']->module == 'iivblock') {
+    $variables['classes'][] = 'block-iivblock';
+    if ($variables['block']->delta == 'default') {
+      $machine_name = $variables['block']->settings['machine_name'];
+      $variables['classes'][] = backdrop_html_class('block-iivblock-' . $machine_name);
+    }
+  }
+}

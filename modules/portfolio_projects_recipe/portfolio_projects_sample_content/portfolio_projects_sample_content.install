@@ -1,0 +1,297 @@
+<?php
+  function portfolio_projects_sample_content_install() {
+
+    // field_create_instance($instance);
+    $field_image_dir = 'public://projects';
+    file_prepare_directory($field_image_dir, FILE_CREATE_DIRECTORY);
+
+    $projects = array(
+      'educational-site-chatgpt.webp',
+      'techsite-chatgpt.webp',
+      'ecommerce-chatgpt.webp',
+      'photographer-website-chatgpt.webp',
+      'travel-blog-chatgpt.webp',
+      'bakery-site-chatgpt.webp',
+    );
+
+    $fids = [];
+
+    foreach ($projects as $image_filename) {
+      $image_url = BACKDROP_ROOT . '/' . backdrop_get_path('module', 'portfolio_projects_sample_content') . '/' . 'images/'. $image_filename;
+      $moved_file = file_unmanaged_copy($image_url, $field_image_dir);
+
+      $file = entity_create('file', array(
+        'filename' => $image_filename,
+        'uri' => $moved_file,
+        'uid' => 1,
+      ));
+
+      $file->save();
+      $fids[] = $file->fid;
+    }
+
+    // 1 - Make a project node.
+    $project = new Node(
+      array(
+        'title' => st("Children's Educational Platform"),
+        'field_project_image' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'fid' => $fids[0],
+            ),
+          ),
+        ),
+        'body' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("<p>A colorful and engaging website for a children's educational platform. It includes fun illustrations, interactive learning modules, and a section for parents' resources. The design aims to make learning fun and accessible for children while providing valuable information for parents.</p>"),
+              'format' => 'filtered_html',
+              'summary' => st("Idea generation services help businesses brainstorm and develop innovative concepts to create unique and effective online strategies."),
+            ),
+          ),
+        ),
+        'field_project_client' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("Bee Bop Dooley Dop"),
+            ),
+          ),
+        ),
+        'field_project_info_link' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'title' => st("Triplo Web Design"),
+              'url' => st("https://www.triplo.co"),
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'project',
+      )
+    );
+    $project->save();
+
+    // 2 - Make a project node.
+    $project = new Node(
+      array(
+        'title' => st("Tech Startup"),
+        'field_project_image' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'fid' => $fids[1],
+            ),
+          ),
+        ),
+        'body' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("<p>This modern and user-friendly website is designed for a tech startup. It features a sleek design, a section for showcasing products and services, and a team page with photos and bios. The design focuses on presenting the startup as innovative and professional.</p>"),
+              'format' => 'filtered_html',
+              'summary' => st("This modern and user-friendly website is designed for a tech startup."),
+            ),
+          ),
+        ),
+        'field_project_client' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("Widgets and Gizmos Galore"),
+            ),
+          ),
+        ),
+        'field_project_info_link' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'title' => st("Simplo Websites"),
+              'url' => st("https://www.simplo.site"),
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'project',
+      )
+    );
+    $project->save();
+
+    // 3 - Make a project node.
+    $project = new Node(
+      array(
+        'title' => st("Handmade Jewelry E-Commerce Site"),
+        'field_project_image' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'fid' => $fids[2],
+            ),
+          ),
+        ),
+        'body' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("<p>An elegant and minimalist e-commerce website for handmade jewelry. The site features high-quality images of products, a clean and simple layout, and an easy-to-use shopping cart. The design highlights the beauty and craftsmanship of the jewelry pieces.</p>"),
+              'format' => 'filtered_html',
+              'summary' => st("An elegant and minimalist e-commerce website for handmade jewelry."),
+            ),
+          ),
+        ),
+        'field_project_client' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("Pretty Ribbons and Rocks"),
+            ),
+          ),
+        ),
+        'field_project_info_link' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'title' => st("Learn Backdrop CMS"),
+              'url' => st("https://learn-backdrop.simplo.site/"),
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'project',
+      )
+    );
+    $project->save();
+
+    // 4 - Make a project node.
+    $project = new Node(
+      array(
+        'title' => st("Travel Blog"),
+        'field_project_image' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'fid' => $fids[3],
+            ),
+          ),
+        ),
+        'body' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("<p>This dynamic and interactive website is perfect for a travel blog. It includes a map with travel destinations, a section for blog posts, and vibrant photos from different locations. The design aims to capture the excitement and diversity of travel experiences.</p>"),
+              'format' => 'filtered_html',
+              'summary' => st("This dynamic and interactive website is perfect for a travel blog."),
+            ),
+          ),
+        ),
+        'field_project_client' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("Horizen Travel Stories"),
+            ),
+          ),
+        ),
+        'field_project_info_link' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'title' => st("Simplo Sites"),
+              'url' => st("https://www.simplo.site"),
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'project',
+      )
+    );
+    $project->save();
+
+    // 5 - Make a project node.
+    $project = new Node(
+      array(
+        'title' => st("Freelance Photographer Portfolio"),
+        'field_project_image' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'fid' => $fids[4],
+            ),
+          ),
+        ),
+        'body' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("<p>This sleek and professional portfolio website is designed for a freelance photographer. It features a fullscreen background image, a gallery of selected works, and a contact form. The design emphasizes the photographer's visual style and makes it easy for potential clients to get in touch.</p>"),
+              'format' => 'filtered_html',
+              'summary' => st("This sleek and professional portfolio website is designed for a freelance photographer."),
+            ),
+          ),
+        ),
+        'field_project_client' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("Adventure Photography"),
+            ),
+          ),
+        ),
+        'field_project_info_link' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'title' => st("Triplo Web Design"),
+              'url' => st("https://www.triplo.co"),
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'project',
+      )
+    );
+    $project->save();
+
+    // 6 - Make a project node.
+    $project = new Node(
+      array(
+        'title' => st("Local Bakery Website"),
+        'field_project_image' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'fid' => $fids[5],
+            ),
+          ),
+        ),
+        'body' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("<p>This project features a clean and modern website for a local bakery. The design includes a banner with images of fresh pastries, a simple navigation menu, and a section showcasing the bakery's specialties. The focus is on providing a warm, inviting online presence for the bakery.</p>"),
+              'format' => 'filtered_html',
+              'summary' => st("This project features a clean and modern website for a local bakery."),
+            ),
+          ),
+        ),
+        'field_project_client' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'value' => st("Bella's Bakery"),
+            ),
+          ),
+        ),
+        'field_project_info_link' => array(
+          LANGUAGE_NONE => array(
+            array(
+              'title' => st("Theme Switcher"),
+              'url' => st("https://themeswitcher.simplo.site/"),
+            ),
+          ),
+        ),
+        'uid' => 1,
+        'status' => 1,
+        'promote' => 0,
+        'type' => 'project',
+      )
+    );
+    $project->save();
+
+    $layout = layout_load('home');
+    $layout->addBlock('views', 'portfolio_projects-block_1', 'content');
+    $layout->save();
+
+    backdrop_set_message('The Portfolio Projects Sample Content module has create sample content on your site. You will need to remove this content manually when you are finished with it.', 'info');
+  }
+

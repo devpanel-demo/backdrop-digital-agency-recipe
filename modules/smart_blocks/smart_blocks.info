@@ -1,0 +1,10 @@
+type = module
+name = Smart Blocks
+description = A collection of blocks that allow using entity data from the current page.
+backdrop = 1.x
+tags[] = Layouts
+
+; Added by Backdrop CMS packaging script on 2024-08-05
+project = smart_blocks
+version = 1.x-1.0-alpha2
+timestamp = 1722896736

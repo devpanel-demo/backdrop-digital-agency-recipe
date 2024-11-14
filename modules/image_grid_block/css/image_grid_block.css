@@ -1,0 +1,55 @@
+/**
+ * @file
+ * Provides CSS styles for the Zeever Blocks module.
+ */
+
+.image_grid_block_wrapper {
+
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 250px 250px;
+  gap:  10px;
+  margin:  0 auto;
+}
+
+.image_grid_block_wrapper.no-tall-image {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 300px;
+}
+
+.image_grid_block {
+  position: relative;
+  overflow: clip;
+  object-fit: fill;
+}
+
+.cover {
+  object-fit: fill;
+}
+
+.image_grid_block img {
+  display:  block;
+  object-fit: fill;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.image_grid_block .image-overlay {
+  position: absolute;
+  bottom:  0px;
+  left:  0px;
+  z-index:  10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 30px;
+  font-weight: 900;
+  padding: 0 30px;
+  width: 100%;
+}
+
+.image_grid_block.tall-image {
+  grid-row: span 2;
+}

@@ -1,0 +1,13 @@
+type = module
+name = Testimonial Sample Content
+description = Sample Content for Testimonial Recipe
+package = Recipes Content
+backdrop = 1.x
+
+dependencies[] = system (>=1.20.0)
+dependencies[] = testimonial_recipe
+
+; Added by Backdrop CMS packaging script on 2024-08-26
+project = testimonial_recipe
+version = 1.x-1.0.8
+timestamp = 1724724531

@@ -1,0 +1,15 @@
+name = IIV Block
+description = Provides a file field in block configuration form for displaying an image in a block and a text in 2 columns with effect.
+backdrop = 1.x
+type = module
+package = User Interface
+dependencies[] = image
+dependencies[] = system (>=1.14.0)
+
+configure = admin/structure/iivblock/iivblock_configure
+stylesheets[all][] = css/iivblock.css
+scripts[] = iivblock.js
+; Added by Backdrop CMS packaging script on 2024-07-21
+project = iivblock
+version = 1.x-1.0.1
+timestamp = 1721552990

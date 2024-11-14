@@ -1,0 +1,93 @@
+<?php
+
+/**
+ * Implements hook_block_info().
+ */
+function smart_blocks_block_info() {
+  $blocks = [];
+
+  $blocks['SmartBlocksHeroBlock'] = [
+    'info' => t('Smart hero block'),
+    'description' => t('A hero block often consists of text over a background image, though either are optional. Can be used to create banners or horizontal seperators on a page.'),
+    'class' => 'SmartBlocksHeroBlock',
+  ];
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_autoload_info().
+ */
+function smart_blocks_autoload_info() {
+  return array(
+    'SmartBlocksBase' => 'inc/block.SmartBlocksBase.inc',
+    'SmartBlocksHeroBlock' => 'inc/block.SmartBlocksHeroBlock.inc',
+  );
+}
+
+function smart_blocks_preprocess(&$variables, $hook) {
+  if (in_array($hook, ['block', 'block_dynamic'])) {
+    $block = $variables['block'];
+    if ($block instanceof SmartBlocksBase) {
+      // Get the current page entity so we can lookup fields.
+      $entity = NULL;
+      $router_item = menu_get_item();
+      foreach ($router_item['map'] as $key => $arg) {
+        if ($arg instanceof Entity) {
+          $entity = $arg;
+          break;
+        }
+      }
+
+      // Set the block title.
+      if ($block->settings['title_display'] === 'page_title') {
+        $variables['title'] = backdrop_get_title();
+      }
+      if (!empty($block->settings['title_field'])) {
+        if (!empty($entity->{$block->settings['title_field']})) {
+          $variables['title'] = field_get_value($entity, $block->settings['title_field'], 'safe_value');
+        }
+      }
+
+      // Try setting the background image for hero blocks.
+      if (isset($block->is_hero_block)) {
+        $variables['classes'][] = 'block-hero';
+
+        // Try loading the background image from a field on the current entity.
+        // @todo: add a way to specify the field for the hero background instead of just getting the first one.
+        foreach ($block->fields as $field_name => $field_info) {
+          if ($field_info['type'] === 'image') {
+            $image_field_found = TRUE;
+            break;
+          }
+        }
+
+        if ($image_field_found) {
+          if (isset($block->settings[$field_name . '_field'])) {
+
+            if (!empty($entity->{$block->settings[$field_name . '_field']})) {
+              $uri = field_get_value($entity, $block->settings[$field_name . '_field'], 'uri');
+              $image_path = file_create_url($uri);
+            }
+          }
+
+          // If there is no image from a field, use the one from block settings.
+          if (empty($image_path) && !empty($block->settings[$field_name . '_path'])) {
+            $image_path = $block->settings[$field_name . '_path'];
+          }
+        }
+
+        // Put the image into the style parameter.
+        if (isset($image_path) && !empty($image_path)) {
+          $variables['attributes']['style'] = 'background-image:url(' . $image_path . ');';
+          $variables['classes'][] = 'block-hero-image';
+        }
+        else {
+          $variables['classes'][] = 'block-hero-no-image';
+        }
+      }
+
+      $variables['region'] = $variables['layout']->getBlockPosition($block->uuid);
+    }
+  }
+}
